@@ -1,9 +1,7 @@
 <?php
 /*
  * Rotating Background module
- * © 2012 e-motion design
- * dev@e-motion.com.au
- * www.e-motion.com.au
+ * (C) 2012 e-motion design
  */
 
 // no direct access
@@ -24,6 +22,6 @@ if ($random_order) {
 	sort($images);
 }
 
-require(JModuleHelper::getLayoutPath('mod_background'));
+require JModuleHelper::getLayoutPath('mod_background', $params->get('layout', 'default'));
 
 ?>

@@ -1,9 +1,7 @@
 <?php
 /*
  * Rotating Background module - default layout
- * © 2012 e-motion design
- * dev@e-motion.com.au
- * www.e-motion.com.au
+ * (C) 2012 Benjamin Booth
  */
 
 // No direct access.
@@ -13,32 +11,41 @@ defined('_JEXEC') or die;
 
 <script type="text/javascript">
 
-//Animation variables 
+// Add the Google hosted jQuery if not already present
+var docHead = document.getElementsByTagName("head")[0];
+if (typeof jQuery === 'undefined') {
+	newScript = document.createElement('script');
+	newScript.type = 'text/javascript';
+	newScript.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
+	docHead.appendChild(newScript);
+}
+// Then add backstretch.js
+newScript2 = document.createElement('script');
+newScript2.type = 'text/javascript';
+newScript2.src = '<?php echo JURI::root(); ?>modules/mod_background/js/jquery.backstretch.min.js';
+docHead.appendChild(newScript2);
+
+// Animation variables 
 var fadeSpeed = <?php echo $params->get("transition_time"); ?>;
 var holdTime = <?php echo $params->get("image_time"); ?>;
 var imagelocation = "<?php echo $images_folder; ?>";
 
+// Preload images
+function preload(arrayOfImages) {
+    $j(arrayOfImages).each(function(){
+    	(new Image()).src = this;
+    });
+};
+
 // Create an array of images that you'd like to use 
 var images = [
 <?php foreach ($images as $image) {
-	echo '"'.$image.'", '; 
+	echo 'imagelocation + "'.$image.'", '; 
 } ?>
 ];
-preload(imagelocation, images);
+preload(images);
 
-<?php if ($random_order) : ?>
-var index = Math.floor(Math.random()*images.length);
-<?php else : ?>
-var index = 0;
-<?php endif; ?>
-
-// Call backstretch for the first time, 
-$j.backstretch(imagelocation+images[index], {speed: fadeSpeed});
-
-// Set an interval that increments the index and sets the new image 
-setInterval(function() {
-	index = (index >= images.length - 1) ? 0 : index + 1;
-	$j.backstretch(imagelocation+images[index]);
-}, holdTime);
+// Call backstretch
+$j.backstretch(images, {duration: holdTime, fade: fadeSpeed});
 
 </script>

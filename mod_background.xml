@@ -1,35 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="1.7" client="site">
-    <name>Background Images</name>
-    <author>e-motion design</author>
-    <version>1.0.0</version>
+<extension
+	type="module"
+	version="1.7"
+	client="site">
+	
+    <name>mod_background</name>
+    <author>Benjamin Booth</author>
     <creationDate>May 2012</creationDate>
     <copyright>Copyright (C) 2012. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <authorEmail>dev@e-motion.com.au</authorEmail>
-    <authorUrl>www.e-motion.com.au</authorUrl>
-    <description>Load all images from a specified folder and rotate between them</description>
+    <authorEmail>bkbooth@gmail.com</authorEmail>
+    <authorUrl>bkbooth.com.au</authorUrl>
+    <version>1.0.0</version>
+    <description>MOD_BACKGROUND_XML_DESCRIPTION</description>
     <files>
         <filename module="mod_facebookfeed">mod_facebookfeed.php</filename>
+        <folder>tmpl</folder>
+        <filename>helper.php</filename>
         <filename>mod_facebookfeed.xml</filename>
         <filename>index.html</filename>
-        <filename>helper.php</filename>
-        <filename>tmpl/default.php</filename>
-        <filename>tmpl/index.html</filename>
     </files>
+    <languages>
+		<language tag="en-GB">en-GB.mod_background.ini</language>
+		<language tag="en-GB">en-GB.mod_background.sys.ini</language>
+	</languages>
     <config>
     	<fields name="params">
     		<fieldset name="basic">
-    			<field name="image_folder" type="folderlist" default="" label="Image Folder" directory="images/backgrounds" description="Choose the folder to load images from." hide_default="1" hide_none="1" />
-    			<field name="image_time" type="text" default="8000" label="Image Time" description="How long to stay on a single image." />
-    			<field name="transition_time" type="text" default="500" label="Transition Time" description="How long to transition between images." />
-    			<field name="random_order" type="radio" default="1" label="Random Order" description="Should the images be shuffled?">
-    				<option value="0">No</option>
-    				<option value="1">Yes</option>
+    			<field
+    				name="image_folder"
+					type="folderlist"
+					default=""
+					label="MOD_BACKGROUND_FOLDER_LBL"
+					directory="images/backgrounds"
+					description="MOD_BACKGROUND_FOLDER_DESC"
+					hide_default="1"
+					hide_none="1" />
+					
+    			<field
+    				name="image_time"
+    				type="text"
+    				default="8000"
+    				label="MOD_BACKGROUND_IMGTIME_LBL"
+    				description="MOD_BACKGROUND_IMGTIME_DESC" />
+    				
+    			<field
+    				name="transition_time"
+    				type="text"
+    				default="500"
+    				label="MOD_BACKGROUND_TRANSTIME_LBL"
+    				description="MOD_BACKGROUND_TRANSTIME_DESC" />
+    				
+    			<field
+    				name="random_order"
+    				type="radio"
+    				default="1"
+    				label="MOD_BACKGROUND_SHUFFLE_LBL"
+    				description="MOD_BACKGROUND_SHUFFLE_DESC">    				
+    				<option value="0">MOD_BACKGROUND_SHUFFLE_OPT_NO</option>
+    				<option value="1">MOD_BACKGROUND_SHUFFLE_OPT_YES</option>
     			</field>
     		</fieldset>
     		<fieldset name="advanced">
-    			<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="Suffix for individual css styling" />
+    			<field
+    				name="moduleclass_sfx"
+    				type="text"
+    				default=""
+    				label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+    				description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
     		</fieldset>
     	</fields>
     </config>

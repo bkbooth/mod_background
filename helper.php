@@ -1,9 +1,7 @@
 <?php
 /*
  * Rotating Background module - helper
- * © 2012 e-motion design
- * dev@e-motion.com.au
- * www.e-motion.com.au
+ * (C) 2012 Benjamin Booth
  */
 
 // no direct access
